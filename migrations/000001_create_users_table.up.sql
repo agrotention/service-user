@@ -1,0 +1,12 @@
+CREATE TABLE users (
+    id BINARY(16) PRIMARY KEY,
+    email VARCHAR(254) UNIQUE NOT NULL,
+    username VARCHAR(32) UNIQUE NOT NULL,
+    password VARCHAR(72) NOT NULL,
+    first_name VARCHAR(63) NOT NULL,
+    last_name VARCHAR(63) NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    deleted_at TIMESTAMP NULL DEFAULT NULL,
+    INDEX idx_user_deleted_at (deleted_at)
+);
