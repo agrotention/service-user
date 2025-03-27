@@ -1,6 +1,10 @@
 package cfg
 
-import _ "github.com/joho/godotenv/autoload"
+import (
+	"fmt"
+
+	_ "github.com/joho/godotenv/autoload"
+)
 
 var (
 	SERVICE_USER_HOST   string = getEnv("SERVICE_USER_HOST", "0.0.0.0")
@@ -11,4 +15,12 @@ var (
 	MYSQL_NAME          string = mustGetEnv("MYSQL_NAME")
 	MYSQL_HOST          string = mustGetEnv("MYSQL_HOST")
 	MYSQL_PORT          string = mustGetEnv("MYSQL_PORT")
+	DSN                 string = fmt.Sprintf(
+		"mysql://%s:%s@tcp(%s:%s)/%s",
+		MYSQL_USER,
+		MYSQL_PASS,
+		MYSQL_HOST,
+		MYSQL_PORT,
+		MYSQL_NAME,
+	)
 )
