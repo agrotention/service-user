@@ -26,6 +26,16 @@ func TestValidatePassword(t *testing.T) {
 			WantError: false,
 		},
 		{
+			Name: "No last name",
+			Data: &pb_user.CreateUserRequest{
+				Email:     "nolastname@email.com",
+				Username:  "nolastname",
+				Password:  "NoLastName1234",
+				FirstName: "Nolastname",
+			},
+			WantError: false,
+		},
+		{
 			Name: "Password too short",
 			Data: &pb_user.CreateUserRequest{
 				Email:     "test@email.com",
